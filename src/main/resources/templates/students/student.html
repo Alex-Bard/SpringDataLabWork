@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CreateUserException</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="nav">
+    <a class="nav-link active" href="../exceptions/">Пользовательские исключения</a>
+    <a class="nav-link" href="/students/">Студенты</a>
+    <a class="nav-link disabled" href="#">Приватность</a>
+</nav>
+<hr class="mt-2 mb-3"/>
+
+<hr class="mt-2 mb-3"/>
+<div class="container">
+
+    <div class="container" >
+        <div class="jumbotron">
+            <div class="container" >
+                <h3 th:text="'Студент номер ' + ${students.id}"></h3>
+                <hr class="mt-2 mb-3"/>
+                <form>
+
+                    <dl class="row">
+                        <dt class="col-sm-3">Id</dt>
+                        <dd class="col-sm-9" th:text="${students.id}"></dd>
+
+                        <dt class="col-sm-3">Имя</dt>
+                        <dd class="col-sm-9" th:text="${students.firstName}"></dd>
+
+                        <dt class="col-sm-3">Фамилия</dt>
+                        <dd class="col-sm-9" th:text="${students.lastName}"></dd>
+
+                        <dt class="col-sm-3">Группа</dt>
+                        <dd class="col-sm-9" th:text="${students.idGroup}"></dd>
+
+
+                        <hr class="mt-2 mb-3"/>
+                        <dt class="col-sm-3">
+                            <a th:href="@{../exceptions/edit/{id}(id=${students.id})}">Изменить</a> |
+                            <a th:href="@{../exceptions/delete/{id}(id=${students.id})}">Удалить</a> |
+                            <a href="/students/">Вернуться</a>
+
+                        </dt>
+
+                    </dl>
+                </form>
+            </div>
+        </div>
+
+</div>
+</div>
+</body>
+</html>

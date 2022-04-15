@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CreateUserException</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="nav">
+    <a class="nav-link active" href="../exceptions/">Пользовательские исключения</a>
+    <a class="nav-link" href="/students/">Студенты</a>
+    <a class="nav-link disabled" href="#">Приватность</a>
+</nav>
+<hr class="mt-2 mb-3"/>
+
+<hr class="mt-2 mb-3"/>
+<div class="container">
+    <div th:switch="${students.id}" class="container">
+        <h2 th:case="0">Ошибка</h2>
+    <h3 th:case="*" th:text="'Студент номер ' + ${students.id}"></h3>
+    </div>
+
+    <div class="container">
+        <form action="#" th:action="@{/students/create}" th:object="${students}" method="post" >
+            <div class="form-group">
+                <label for="message">Имя</label>
+                <input type="hidden" id="id" th:field="*{id}"/>
+                <input type="text" class="form-control" th:field="*{firstName}" id="message" placeholder="message">
+                <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('firstName')}" th:errorclass="error" th:errors="*{firstName}" />
+            </div>
+            <div class="form-group">
+                <label for="targetSite">Фамилия</label>
+                <input type="text" class="form-control" th:field="*{lastName}" id="targetSite" placeholder="targetSite">
+                <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('lastName')}" th:errorclass="error" th:errors="*{lastName}" />
+            </div>
+            <div class="form-group">
+                <label for="dateTime">Группа</label>
+                <!--                <input type="text" class="form-control" th:field="${#dates.format(*{dateTIme}, 'dd-MMM-yyyy')}" id="dateTime" placeholder="dateTime">-->
+                <input type="text" class="form-control" th:field="*{idGroup}" id="dateTime" placeholder="dateTime">
+                <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('idGroup')}" th:errorclass="error" th:errors="*{idGroup}" />
+            </div>
+            <button type="submit" class="btn btn-primary">Изменить</button>
+        </form>
+        <hr class="mt-2 mb-3"/>
+        <dt class="col-sm-3" th:if="userExc.id != 0">
+            <a th:href="@{../../students/edit/{id}(id=${students.id})}">Изменить</a> |
+            <a th:href="@{../../students/delete/{id}(id=${students.id})}">Удалить</a> |
+            <a href="../../exceptions/">Вернуться</a>
+
+        </dt>
+    </div>
+</div>
+</body>
+</html>

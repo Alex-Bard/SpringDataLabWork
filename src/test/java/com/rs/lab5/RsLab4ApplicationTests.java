@@ -1,0 +1,13 @@
+package com.rs.lab5;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class RsLab4ApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user_exeptions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="nav">
+    <a class="nav-link active" href="../exceptions/">Пользовательские исключения</a>
+    <a class="nav-link" href="/students/">Студенты</a>
+    <a class="nav-link disabled" href="#">Приватность</a>
+</nav>
+<hr class="mt-2 mb-3"/>
+<div th:switch="${exceptions}" class="container">
+    <h2 th:case="nall">Ничего не найдено!</h2>
+    <div th:case="*">
+        <h2>Таблица пользовательских исключений</h2>
+        <a href="create/">Добавить</a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>message</th>
+                <th>targetSite</th>
+                <th>dateTime</th>
+                <th>indexForm</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="exc : ${exceptions}">
+                <td th:text="${exc.id}"></td>
+                <td th:text="${exc.message}"></td>
+                <td th:text="${exc.targetSite}"></td>
+                <td th:text="${exc.dateTIme}"></td>
+                <td th:text="${exc.indexForm}"></td>
+                <td><a th:href="@{edit/{id}(id=${exc.id})}">Изменить</a> |
+                    <a th:href="@{delete/{id}(id=${exc.id})}">Удалить</a> |
+                    <a th:href="@{{id}(id=${exc.id})}">Детали</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>
